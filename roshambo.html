@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <h1>RPS comming soon</h1>
+    <div class="container">
+        <div class="row justify-content-md-center m-3">
+            <button onclick="compare('Rock')">Rock</button>
+            <button onclick="compare('Paper')">Paper</button>
+            <button onclick="compare('Scissors')">Scissors</button>
+        </div>
+        <div class="row">
+            <div class="jumbotron jumbotron-fluid col-5 m-3 border border-dark" id="userJumbo">
+                <div class="container">
+                    <h1 class="display-4">Fluid jumbotron</h1>
+                    <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its
+                        parent.
+                    </p>
+                </div>
+            </div>
+            <div class="jumbotron jumbotron-fluid col-5 m-3 border border-dark" id="compJumbo">
+                <div class="container">
+                    <h1 class="display-4">Fluid jumbotron</h1>
+                    <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its
+                        parent.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Roshambo - Psuedo Code
+        // start program
+        // computer picks rock paper or scissors - using random number
+        // user pick rock paper or scissors using buttons
+        // compare userInput to computerChoice
+        // increment score diplay below either user choice or computer 
+        //
+        //
+        // Start function
+        // Have computer randomly selects attack i.e. rock, paper scissors.
+        // Store computer attack
+        // Get users selected attack
+        // Store users selected attack
+        // Compare computer attack to user attack
+        // Change CSS to style the page in a way that indicates who won
+        // Update scores
+        // Display current score
+        // Repeat
+        //
+        // Brian's psuedo code
+        //  Funtion to control whole game
+        // define scores
+        // handle the click of the three buttons
+        // create a random choice for the computer 
+        // process the results of the user and the computer
+        // render the game and result
+        // adjust the scores
+        // render ther scores
+        //
+        // Bonus: game of 5 or 7 or 11 then reset
+
+        function rps() {
+            let userScore = 0;
+            let compScore = 0;
+
+            function compare(userInput) {
+                console.log(userInput)
+                //Randomly select computerAttack
+                const attacks = ["Rock", "Paper", "Scissors"];
+                const randomIndex = Math.floor(Math.random() * attacks.length);
+                // console.log(randomIndex);
+                const compAttack = attacks[randomIndex];
+                console.log(compAttack);
+
+                const userJumboEl = document.getElementById("userJumbo");
+                const compJumboEl = document.getElementById("compJumbo");
+
+
+                // figure out what the result is
+                let outcome = "result";
+                if (userInput === "Rock" && compAttack === "Scissors") {
+                    console.log("Winner");
+                    outcome = "win";
+                    userJumboEl.setAttribute("class", "jumbotron jumbotron-fluid col-5 m-3 border border-dark bg-success");
+                    compJumboEl.setAttribute("class", "jumbotron jumbotron-fluid col-5 m-3 border border-dark bg-danger");
+                } else if (userInput === "Rock" && compAttack === "Paper") {
+                    console.log("Computer Wins");
+                    outcome = "loss";
+                    userJumboEl.setAttribute("class", "jumbotron jumbotron-fluid col-5 m-3 border border-dark bg-danger");
+                    compJumboEl.setAttribute("class", "jumbotron jumbotron-fluid col-5 m-3 border border-dark bg-success");
+                }
+                if (userInput === "Paper" && compAttack === "Rock") {
+                    console.log("Winner");
+                    outcome = "win";
+                    userJumboEl.setAttribute("class", "jumbotron jumbotron-fluid col-5 m-3 border border-dark bg-success");
+                    compJumboEl.setAttribute("class", "jumbotron jumbotron-fluid col-5 m-3 border border-dark bg-danger");
+                } else if (userInput === "Paper" && compAttack === "Scissors") {
+                    console.log("Computer Wins");
+                    outcome = "loss";
+                    userJumboEl.setAttribute("class", "jumbotron jumbotron-fluid col-5 m-3 border border-dark bg-danger");
+                    compJumboEl.setAttribute("class", "jumbotron jumbotron-fluid col-5 m-3 border border-dark bg-success");
+                }
+                if (userInput === "Scissors" && compAttack === "Paper") {
+                    console.log("Winner");
+                    outcome = "win";
+                    userJumboEl.setAttribute("class", "jumbotron jumbotron-fluid col-5 m-3 border border-dark bg-success");
+                    compJumboEl.setAttribute("class", "jumbotron jumbotron-fluid col-5 m-3 border border-dark bg-danger");
+                } else if (userInput === "Scissors" && compAttack === "Rock") {
+                    console.log("Computer Wins");
+                    outcome = "loss";
+                    userJumboEl.setAttribute("class", "jumbotron jumbotron-fluid col-5 m-3 border border-dark bg-danger");
+                    compJumboEl.setAttribute("class", "jumbotron jumbotron-fluid col-5 m-3 border border-dark bg-success");
+                }
+                if (userInput === compAttack) {
+                    console.log("no winner");
+                    outcome = "tie";
+                    userJumboEl.setAttribute("class", "jumbotron jumbotron-fluid col-5 m-3 border border-dark bg-light");
+                    compJumboEl.setAttribute("class", "jumbotron jumbotron-fluid col-5 m-3 border border-dark bg-light");
+                }
+
+                // this will adjust the scores
+                if (outcome === "win") {
+                    userScore + 1;
+                } else if (outcome === "loss") {
+                    compScore + 1;
+                }
+                if (outcome === "tie") {
+
+                }
+                console.log(outcome);
+
+
+
+
+
+                // userInput = "Rock"
+
+            }
+            // compare("Rock");
+
+        window.compare = compare;
+        }
+
+
+
+
+
+
+        rps();
+
+    </script>
+</body>
+
+</html>
